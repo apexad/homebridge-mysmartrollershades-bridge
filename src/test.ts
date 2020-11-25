@@ -4,7 +4,7 @@ import prompt from 'prompt';
 import {
   MYSMARTBLINDS_DOMAIN,
   TILTSMARTHOME_OPTIONS,
-  TILTSMARTHOME_URL
+  TILTSMARTHOME_URL,
 } from './settings';
 
 import {

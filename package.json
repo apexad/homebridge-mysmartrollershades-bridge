@@ -54,6 +54,9 @@
     "url": "https://github.com/apexad/homebridge-mysmartrollershades-bridge/issues"
   },
   "main": "dist/index.js",
+  "bin": {
+    "homebridge-mysmartrollershades-bridge": "./test.js"
+  },
   "funding": [
     {
       "type": "paypal",
