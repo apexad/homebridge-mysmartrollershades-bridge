@@ -1,0 +1,68 @@
+{
+  "pluginAlias": "MySmartRollerShafesBridge",
+  "pluginType": "platform",
+  "headerDisplay": "This plugin uses the [MySmartRollerShades Smart Bridge](https://www.tiltsmarthome.com/products/smart-hub?variant=31506970116161) to control the roller shades.",
+  "singular": true,
+  "schema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "title": "Name",
+        "type": "string",
+        "default": "MySmartRollerShadesBridge",
+        "required": true
+      },
+      "username": {
+        "title": "Username",
+        "type": "string",
+        "required": true
+      },
+      "password": {
+        "title": "Password",
+        "type": "string",
+        "required": true,
+        "options": {
+          "hidden": true
+        }
+      },
+      "closeUp": {
+        "title": "Close shades up",
+        "type": "boolean",
+        "required": false,
+        "default": false
+      },
+      "pollingInterval": {
+        "title": "Polling Interval",
+        "description": "(in minutes)",
+        "type": "integer",
+        "required": false,
+        "default": 0
+      },
+      "allowDebug": {
+        "title": "Allow Debug Logs",
+        "type": "boolean"
+      },
+      "statusLog": {
+        "title": "Status Change Logs",
+        "type": "boolean"
+      }
+    }
+  },
+  "form": [
+    "name",
+    "username",
+    "password",
+    "closeUp",
+    "pollingInterval",
+    {
+      "type": "fieldset",
+      "expandable": true,
+      "title": "Logs",
+      "description": "Only use if you are troubleshooting or want more information in the logs",
+      "items": [
+        "allowDebug",
+        "statusLog"
+      ]
+    }
+  ]
+}
