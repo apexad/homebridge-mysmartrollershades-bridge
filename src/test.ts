@@ -32,7 +32,7 @@ prompt.get(['username', {name: 'password', hidden: true }], (err: Error, result:
       json: true,
       headers: { Authorization: `Bearer ${response.access_token}` },
     }).then((response) => {
-      console.log(response);
+      console.log(JSON.stringify(response));
     });
   });
 });

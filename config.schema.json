@@ -25,12 +25,6 @@
           "hidden": true
         }
       },
-      "closeUp": {
-        "title": "Close shades up",
-        "type": "boolean",
-        "required": false,
-        "default": false
-      },
       "pollingInterval": {
         "title": "Polling Interval",
         "description": "(in minutes)",
@@ -52,7 +46,6 @@
     "name",
     "username",
     "password",
-    "closeUp",
     "pollingInterval",
     {
       "type": "fieldset",
