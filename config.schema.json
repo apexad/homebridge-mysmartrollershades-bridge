@@ -1,5 +1,5 @@
 {
-  "pluginAlias": "MySmartRollerShafesBridge",
+  "pluginAlias": "MySmartRollerShadesBridge",
   "pluginType": "platform",
   "headerDisplay": "This plugin uses the [MySmartRollerShades Smart Bridge](https://www.tiltsmarthome.com/products/smart-hub?variant=31506970116161) to control the roller shades.",
   "singular": true,
