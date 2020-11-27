@@ -11,3 +11,8 @@ export interface MySmartRollerShadesAuth {
     username: string;
     password: string;
 }
+
+export interface MySmartRollerShade {
+    id: string;
+    name: string;
+}
