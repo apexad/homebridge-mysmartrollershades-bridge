@@ -5,6 +5,7 @@ export const PLUGIN_NAME = 'homebridge-mysmartrollershades-bridge';
 /* Tilt App Settings */
 export const MYSMARTBLINDS_DOMAIN = 'mysmartblinds.auth0.com';
 export const TILTSMARTHOME_URL = 'https://api.tiltsmarthome.com/v2/store/tilt';
+export const TILTSMARTHOME_WSS = 'wss://ws-api.tiltsmarthome.com/v1/';
 
 export const TILTSMARTHOME_OPTIONS = {
   scope: 'openid offline_access',
