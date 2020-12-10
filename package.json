@@ -1,7 +1,7 @@
 {
   "name": "homebridge-mysmartrollershades-bridge",
   "displayName": "Homebridge MySmartRollerShades Bridge",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "!!Work in progress!! Homebrige plugin for mysmartrollershades (using hardware bridge)",
   "keywords": [
     "homebridge-plugin",

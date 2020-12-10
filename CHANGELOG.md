@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/apexad/homebridge-mysmartrollershades-bridge/compare/v0.2.0...v0.3.0) (2020-12-10)
+
+
+### Features
+
+* add websocket to settings file ([5973240](https://github.com/apexad/homebridge-mysmartrollershades-bridge/commit/5973240274494de519e3a44393448209e9be77af))
+* attempt websocket connection ([de1f83d](https://github.com/apexad/homebridge-mysmartrollershades-bridge/commit/de1f83dcffbda0104ef788f224305f60f343de18))
+
+
+### Bug Fixes
+
+* add work in progress message to package.json ([95fab92](https://github.com/apexad/homebridge-mysmartrollershades-bridge/commit/95fab92c8cc6267b09cc452f4eb9c33fdbd5d06e))
+
 ## [0.2.0](https://github.com/apexad/homebridge-mysmartrollershades-bridge/compare/v0.1.1...v0.2.0) (2020-11-27)
 
 
