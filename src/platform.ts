@@ -1,5 +1,6 @@
 import rp from 'request-promise';
 import jwt from 'jsonwebtoken';
+import WebSocket from 'ws';
 import {
   API,
   DynamicPlatformPlugin,
@@ -15,7 +16,7 @@ import {
   MYSMARTBLINDS_DOMAIN,
   TILTSMARTHOME_OPTIONS,
   TILTSMARTHOME_URL,
-
+  TILTSMARTHOME_WSS,
 } from './settings';
 import {
   MySmartRollerShadesConfig,
@@ -33,6 +34,7 @@ export class MySmartRollerShadesBridgePlatform implements DynamicPlatformPlugin 
   auth!: MySmartRollerShadesAuth;
   authToken!: string;
   authTokenInterval?: NodeJS.Timeout;
+  tiltWebSocket!: WebSocket;
   requestOptions!: {
     method: string;
     uri: string;
@@ -119,6 +121,22 @@ export class MySmartRollerShadesBridgePlatform implements DynamicPlatformPlugin 
     this.refreshAuthToken().then(() => {
       this.authTokenInterval = setInterval(this.refreshAuthToken.bind(this), 1000 * 60 * 60 * 8);
       rp(this.requestOptions).then((response) => {
+        // attempt WebSocket setup
+        try {
+          this.tiltWebSocket = new WebSocket(TILTSMARTHOME_WSS, [], { headers: this.requestOptions.headers });
+
+          this.tiltWebSocket.on('open', () => {
+            this.log.warn('WebSocket has connected!');
+          });
+
+          this.tiltWebSocket.on('message', (data: string) => {
+            this.log.warn(`WebSocket message recieved: ${JSON.parse(data)}`);
+          });
+        } catch(err) {
+          this.log.warn('WebSocket connection failed!', err);
+        }
+
+        // create blind accessories
         response.rooms.forEach((room: { rollerShades: MySmartRollerShade[] }) => {
           room.rollerShades.forEach((rollerShade) => {
             const {
