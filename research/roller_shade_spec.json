@@ -1,0 +1,714 @@
+{
+  "devices": {
+    "roller_shade": {
+      "service": "05960001-D71E-4845-AB02-BF27BB160401",
+      "response_uuid": "05960003-D71E-4845-AB02-BF27BB160401",
+      "dfu_service": "05960000-D71E-4845-AB02-BF27BB160401",
+      "commands": {
+        "start_calibration": {
+          "output": [],
+          "input": [
+            {
+              "unit": "enum",
+              "type": "uint-little-8",
+              "optional": false,
+              "notes": "",
+              "keypath": "key",
+              "hidden": false,
+              "display": "Key"
+            }
+          ],
+          "idempotent_update": false,
+          "expects_response": false,
+          "critical": false,
+          "command_code": "0x32"
+        },
+        "set_time": {
+          "output": [],
+          "input": [
+            {
+              "unit": "epoch",
+              "type": "uint-little-32",
+              "optional": false,
+              "notes": "",
+              "keypath": "epoch",
+              "hidden": false,
+              "display": "Unix Epoch"
+            },
+            {
+              "unit": "offset",
+              "type": "int-little-32",
+              "optional": false,
+              "notes": "",
+              "keypath": "offset",
+              "hidden": false,
+              "display": "Offset from epoch to local time in seconds"
+            }
+          ],
+          "idempotent_update": false,
+          "expects_response": false,
+          "critical": false,
+          "command_code": "0x21"
+        },
+        "set_schedule": {
+          "output": [],
+          "input": [
+            {
+              "unit": "checksum",
+              "type": "uint-little-16",
+              "optional": false,
+              "notes": "Checksum of the set_schedule payload (excluding the checksum).",
+              "keypath": "checksum",
+              "hidden": false,
+              "display": "Schedule Checksum"
+            },
+            {
+              "unit": "count",
+              "type": "uint-little-8",
+              "optional": false,
+              "notes": "",
+              "min": 0,
+              "max": 255,
+              "keypath": "length",
+              "hidden": false,
+              "display": "Schedule Data Byte Count"
+            },
+            {
+              "type": "data",
+              "optional": false,
+              "notes": "",
+              "keypath": "schedule_data",
+              "hidden": false,
+              "display": "Schedule Data"
+            }
+          ],
+          "idempotent_update": false,
+          "expects_response": false,
+          "critical": false,
+          "command_code": "0x23"
+        },
+        "set_position": {
+          "output": [],
+          "input": [
+            {
+              "type": "uint-little-16",
+              "optional": false,
+              "notes": "1000 is open, 0 is closed.",
+              "min": 0,
+              "max": 1000,
+              "keypath": "position",
+              "hidden": false,
+              "display": "Position"
+            },
+            {
+              "type": "uint-little-8",
+              "optional": false,
+              "notes": "",
+              "min": 0,
+              "max": 100,
+              "keypath": "speed",
+              "hidden": false,
+              "display": "Speed"
+            }
+          ],
+          "idempotent_update": false,
+          "expects_response": false,
+          "critical": false,
+          "command_code": "0x13"
+        },
+        "set_name": {
+          "output": [],
+          "input": [
+            {
+              "type": "uint-little-8",
+              "optional": false,
+              "notes": "",
+              "max": 32,
+              "keypath": "length",
+              "hidden": false,
+              "display": "Length"
+            },
+            {
+              "unit": "string",
+              "type": "string",
+              "optional": false,
+              "notes": "",
+              "keypath": "name",
+              "hidden": false,
+              "display": "Name"
+            }
+          ],
+          "idempotent_update": false,
+          "expects_response": false,
+          "critical": false,
+          "command_code": "0x6"
+        },
+        "set_location": {
+          "output": [],
+          "input": [
+            {
+              "unit": "degrees",
+              "type": "int-little-16",
+              "optional": false,
+              "notes": "",
+              "min": -90,
+              "max": 90,
+              "keypath": "latitude",
+              "hidden": false,
+              "display": "Latitude"
+            },
+            {
+              "unit": "degrees",
+              "type": "int-little-16",
+              "optional": false,
+              "notes": "",
+              "min": -180,
+              "max": 180,
+              "keypath": "longitude",
+              "hidden": false,
+              "display": "Longitude"
+            }
+          ],
+          "idempotent_update": false,
+          "expects_response": false,
+          "critical": false,
+          "command_code": "0x25"
+        },
+        "set_daylight_savings_info": {
+          "output": [],
+          "input": [
+            {
+              "unit": "checksum",
+              "type": "int-little-16",
+              "optional": false,
+              "notes": "Checksum of the set_daylight_savings_info payload (excluding the checksum).",
+              "keypath": "checksum",
+              "hidden": false,
+              "display": "DST Checksum"
+            },
+            {
+              "type": "uint-little-8",
+              "optional": false,
+              "notes": "Number of DST periods included.",
+              "min": 0,
+              "keypath": "count",
+              "hidden": false,
+              "display": "DST Period Count"
+            },
+            {
+              "type": "data",
+              "optional": false,
+              "notes": "DST data with epoch (signed 32-bit) and UTC + DST offset (signed 32-bit) repeated `count` times.",
+              "keypath": "dst_data",
+              "hidden": false,
+              "display": "DST Data"
+            }
+          ],
+          "idempotent_update": false,
+          "expects_response": false,
+          "critical": false,
+          "command_code": "0x27"
+        },
+        "set_calibration_value": {
+          "output": [],
+          "input": [
+            {
+              "unit": "enum",
+              "type": "uint-little-8",
+              "optional": false,
+              "notes": "",
+              "keypath": "key",
+              "hidden": false,
+              "display": "Key"
+            },
+            {
+              "type": "uint-little-8",
+              "optional": false,
+              "notes": "",
+              "keypath": "value",
+              "hidden": false,
+              "display": "Value"
+            }
+          ],
+          "idempotent_update": false,
+          "expects_response": false,
+          "critical": false,
+          "command_code": "0x31"
+        },
+        "move_manual": {
+          "output": [],
+          "input": [
+            {
+              "unit": "enum",
+              "type": "uint-little-8",
+              "optional": false,
+              "notes": "",
+              "keypath": "type",
+              "hidden": false,
+              "display": "Move Type"
+            },
+            {
+              "unit": "percent",
+              "type": "uint-little-8",
+              "optional": false,
+              "notes": "",
+              "min": 0,
+              "max": 100,
+              "keypath": "speed",
+              "hidden": false,
+              "display": "Speed"
+            }
+          ],
+          "idempotent_update": false,
+          "expects_response": false,
+          "critical": false,
+          "command_code": "0x11"
+        },
+        "launch_bootloader": {
+          "output": [],
+          "input": [],
+          "idempotent_update": false,
+          "expects_response": false,
+          "critical": false,
+          "command_code": "0xB"
+        },
+        "identify": {
+          "output": [],
+          "input": [],
+          "idempotent_update": false,
+          "expects_response": false,
+          "critical": false,
+          "command_code": "0xA"
+        },
+        "go_to_calibration": {
+          "output": [],
+          "input": [
+            {
+              "unit": "enum",
+              "type": "uint-little-8",
+              "optional": false,
+              "notes": "",
+              "keypath": "key",
+              "hidden": false,
+              "display": "Key"
+            }
+          ],
+          "idempotent_update": false,
+          "expects_response": false,
+          "critical": false,
+          "command_code": "0x33"
+        },
+        "get_version": {
+          "output": [
+            {
+              "type": "uint-little-8",
+              "optional": false,
+              "notes": "",
+              "keypath": "device.major",
+              "hidden": false,
+              "display": "Device Version (Major)"
+            },
+            {
+              "type": "uint-little-8",
+              "optional": false,
+              "notes": "",
+              "keypath": "device.minor",
+              "hidden": false,
+              "display": "Device Version (Minor)"
+            },
+            {
+              "type": "uint-little-8",
+              "optional": false,
+              "notes": "",
+              "keypath": "app.major",
+              "hidden": false,
+              "display": "App Version (Major)"
+            },
+            {
+              "type": "uint-little-8",
+              "optional": false,
+              "notes": "",
+              "keypath": "app.minor",
+              "hidden": false,
+              "display": "App Version (Minor)"
+            },
+            {
+              "type": "uint-little-8",
+              "optional": false,
+              "notes": "",
+              "keypath": "dfu.major",
+              "hidden": false,
+              "display": "DFU Version (Major)"
+            },
+            {
+              "type": "uint-little-8",
+              "optional": false,
+              "notes": "",
+              "keypath": "dfu.minor",
+              "hidden": false,
+              "display": "DFU Version (Minor)"
+            },
+            {
+              "type": "uint-little-8",
+              "optional": false,
+              "notes": "",
+              "keypath": "hardware.major",
+              "hidden": false,
+              "display": "Hardware (PCB) Version (Major)"
+            },
+            {
+              "type": "uint-little-8",
+              "optional": false,
+              "notes": "",
+              "keypath": "hardware.minor",
+              "hidden": false,
+              "display": "Hardware (PCB) Version (Minor)"
+            },
+            {
+              "type": "uint-little-8",
+              "optional": false,
+              "notes": "",
+              "keypath": "softdevice",
+              "hidden": false,
+              "display": "Softdevice number-Nordic's BLE stack"
+            },
+            {
+              "type": "uint-little-16",
+              "optional": false,
+              "notes": "",
+              "keypath": "softdevice_id",
+              "hidden": false,
+              "display": "Softdevice ID number-read from softdevice"
+            },
+            {
+              "type": "uint-little-8",
+              "optional": true,
+              "notes": "",
+              "keypath": "app.patch",
+              "hidden": false,
+              "display": "App Version (Patch)"
+            },
+            {
+              "type": "uint-little-8",
+              "optional": true,
+              "notes": "",
+              "keypath": "app.build",
+              "hidden": false,
+              "display": "App Version (build)"
+            }
+          ],
+          "input": [],
+          "idempotent_update": false,
+          "expects_response": true,
+          "critical": false,
+          "command_code": "0x4"
+        },
+        "get_time": {
+          "output": [
+            {
+              "unit": "epoch",
+              "type": "uint-little-32",
+              "optional": false,
+              "notes": "",
+              "keypath": "epoch",
+              "hidden": false,
+              "display": "Unix Epoch"
+            },
+            {
+              "unit": "minutes",
+              "type": "int-little-32",
+              "optional": false,
+              "notes": "",
+              "keypath": "offset",
+              "hidden": false,
+              "display": "Current Offset"
+            }
+          ],
+          "input": [],
+          "idempotent_update": false,
+          "expects_response": false,
+          "critical": false,
+          "command_code": "0x20"
+        },
+        "get_status": {
+          "output": [
+            {
+              "type": "uint-little-16",
+              "optional": false,
+              "notes": "",
+              "keypath": "position",
+              "hidden": false,
+              "display": "Position"
+            },
+            {
+              "unit": "percent",
+              "type": "uint-little-8",
+              "optional": false,
+              "notes": "",
+              "keypath": "percent",
+              "hidden": false,
+              "display": "Battery Percent"
+            },
+            {
+              "unit": "enum",
+              "type": "uint-little-8",
+              "optional": false,
+              "notes": "",
+              "keypath": "charge_status",
+              "hidden": false,
+              "display": "Charge Status"
+            },
+            {
+              "unit": "bool",
+              "type": "uint-little-8",
+              "optional": false,
+              "notes": "",
+              "keypath": "calibrated",
+              "hidden": false,
+              "display": "Calibrate"
+            }
+          ],
+          "input": [],
+          "idempotent_update": false,
+          "expects_response": false,
+          "critical": false,
+          "command_code": "0x10"
+        },
+        "get_schedule_checksum": {
+          "output": [
+            {
+              "unit": "checksum",
+              "type": "uint-little-16",
+              "optional": false,
+              "notes": "Checksum of the set_schedule payload (excluding the checksum).",
+              "keypath": "checksum",
+              "hidden": false,
+              "display": "Schedule Checksum"
+            }
+          ],
+          "input": [],
+          "idempotent_update": false,
+          "expects_response": false,
+          "critical": false,
+          "command_code": "0x22"
+        },
+        "get_position": {
+          "output": [
+            {
+              "type": "uint-little-16",
+              "optional": false,
+              "notes": "0 is open, 1000 is closed.",
+              "min": 0,
+              "max": 1000,
+              "keypath": "position",
+              "hidden": false,
+              "display": "Position"
+            }
+          ],
+          "input": [],
+          "idempotent_update": false,
+          "expects_response": false,
+          "critical": false,
+          "command_code": "0x12"
+        },
+        "get_name": {
+          "output": [
+            {
+              "type": "uint-little-8",
+              "optional": false,
+              "notes": "",
+              "max": 32,
+              "keypath": "length",
+              "hidden": false,
+              "display": "Length"
+            },
+            {
+              "unit": "string",
+              "type": "string",
+              "optional": false,
+              "notes": "",
+              "keypath": "name",
+              "hidden": false,
+              "display": "Name"
+            }
+          ],
+          "input": [],
+          "idempotent_update": false,
+          "expects_response": true,
+          "critical": false,
+          "command_code": "0x5"
+        },
+        "get_location": {
+          "output": [
+            {
+              "unit": "degrees",
+              "type": "int-little-16",
+              "optional": false,
+              "notes": "",
+              "min": -90,
+              "max": 90,
+              "keypath": "latitude",
+              "hidden": false,
+              "display": "Latitude"
+            },
+            {
+              "unit": "degrees",
+              "type": "int-little-16",
+              "optional": false,
+              "notes": "",
+              "min": -180,
+              "max": 180,
+              "keypath": "longitude",
+              "hidden": false,
+              "display": "Longitude"
+            }
+          ],
+          "input": [],
+          "idempotent_update": false,
+          "expects_response": false,
+          "critical": false,
+          "command_code": "0x24"
+        },
+        "get_error": {
+          "output": [
+            {
+              "unit": "count",
+              "type": "uint-little-8",
+              "optional": false,
+              "notes": "",
+              "min": 0,
+              "max": 255,
+              "keypath": "count",
+              "hidden": false,
+              "display": "Error Count"
+            },
+            {
+              "type": "data",
+              "optional": false,
+              "notes": "1 byte code for each error",
+              "keypath": "error_data",
+              "hidden": false,
+              "display": "Error Data"
+            }
+          ],
+          "input": [],
+          "idempotent_update": false,
+          "expects_response": false,
+          "critical": false,
+          "command_code": "0x7"
+        },
+        "get_daylight_savings_info_checksum": {
+          "output": [
+            {
+              "unit": "checksum",
+              "type": "uint-little-16",
+              "optional": false,
+              "notes": "16-bit simple checksum of DST_data.",
+              "keypath": "checksum",
+              "hidden": false,
+              "display": "DST Checksum"
+            }
+          ],
+          "input": [],
+          "idempotent_update": false,
+          "expects_response": false,
+          "critical": false,
+          "command_code": "0x26"
+        },
+        "get_calibration_value": {
+          "output": [
+            {
+              "type": "uint-little-8",
+              "optional": false,
+              "notes": "",
+              "keypath": "value",
+              "hidden": false,
+              "display": "Value"
+            }
+          ],
+          "input": [
+            {
+              "unit": "enum",
+              "type": "uint-little-8",
+              "optional": false,
+              "notes": "",
+              "keypath": "key",
+              "hidden": false,
+              "display": "Key"
+            }
+          ],
+          "idempotent_update": false,
+          "expects_response": false,
+          "critical": false,
+          "command_code": "0x30"
+        },
+        "get_battery": {
+          "output": [
+            {
+              "unit": "percent",
+              "type": "uint-little-8",
+              "optional": false,
+              "notes": "",
+              "min": 0,
+              "max": 100,
+              "keypath": "percent",
+              "hidden": false,
+              "display": "Battery Percent"
+            },
+            {
+              "unit": "enum",
+              "type": "uint-little-8",
+              "optional": false,
+              "notes": "",
+              "keypath": "charge_status",
+              "hidden": false,
+              "display": "Charge Status"
+            }
+          ],
+          "input": [],
+          "idempotent_update": false,
+          "expects_response": false,
+          "critical": false,
+          "command_code": "0x16"
+        },
+        "factory_reset": {
+          "output": [],
+          "input": [],
+          "idempotent_update": false,
+          "expects_response": false,
+          "critical": false,
+          "command_code": "0xF"
+        },
+        "clear_error": {
+          "output": [],
+          "input": [
+            {
+              "unit": "count",
+              "type": "uint-little-8",
+              "optional": false,
+              "notes": "0 length will clear all errors",
+              "min": 0,
+              "max": 255,
+              "keypath": "count",
+              "hidden": false,
+              "display": "Error Count"
+            },
+            {
+              "type": "data",
+              "optional": false,
+              "notes": "1 byte code for each error to clear",
+              "keypath": "error_data",
+              "hidden": false,
+              "display": "Error Data"
+            }
+          ],
+          "idempotent_update": false,
+          "expects_response": false,
+          "critical": false,
+          "command_code": "0x8"
+        }
+      },
+      "command_uuid": "05960002-D71E-4845-AB02-BF27BB160401"
+    }
+  }
+}
